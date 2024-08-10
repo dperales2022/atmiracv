@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const pdfExtractHandler = require('./pdf-extract.js'); // Assuming this is your file name.
+const pdfExtractHandler = require('./pdf-extract.js'); // Ensure this path is correct
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,15 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Define your API endpoint
-app.post('/extract', async (req, res) => {
-    try {
-        const { pdfpath, docname } = req.body;
-        const result = await pdfExtractHandler({ body: { pdfpath, docname } });
-        res.json(result);
-    } catch (error) {
-        res.status(500).json({ message: 'Internal Server Error', error: error.message });
-    }
-});
+app.post('/extract', pdfExtractHandler);  // Directly use pdfExtractHandler as the route handler
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
