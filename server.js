@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // Define your API endpoint
-app.post('/extract', async (req, res) => {
+app.get('/extract', async (req, res) => {
     try {
         const { pdfpath, docname } = req.body;
         const result = await pdfExtractHandler({ body: { pdfpath, docname } });
