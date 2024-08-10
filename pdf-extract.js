@@ -228,7 +228,7 @@ async function loadDocument(docPath) {
   return docs;
 }
 
-export default async function handler(req, res) {
+async function handler(req, res) {
   if (req.method === "POST") {
     try {
       let { pdfpath, nifparam, docname } = req.body;
