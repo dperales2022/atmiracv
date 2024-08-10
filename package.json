@@ -1,0 +1,19 @@
+{
+  "name": "pdf-extract-service",
+  "version": "1.0.0",
+  "description": "A Node.js service for extracting information from PDF and DOCX documents using LangChain and other tools.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.2.9",
+    "@langchain/core": "^0.2.6"",
+    "@langchain/openai": "^0.1.2",
+    "pdf-parse": "latest",
+    "zod": "^3.22.4"
+    "express-sse": "^0.5.3"
+  },
+  "author": "Daniel Perales",
+  "license": "MIT"
+}
