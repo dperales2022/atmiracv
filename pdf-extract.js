@@ -1,9 +1,9 @@
-import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
-import "pdf-parse";
-import { DocxLoader } from "@langchain/community/document_loaders/fs/docx";
-import { z } from "zod";
-import { ChatPromptTemplate } from "@langchain/core/prompts";
-import { ChatOpenAI } from "@langchain/openai";
+const { PDFLoader } = require("@langchain/community/document_loaders/fs/pdf");
+const { DocxLoader } = require("@langchain/community/document_loaders/fs/docx");
+const pdfParse = require("pdf-parse");
+const z = require("zod");
+const { ChatPromptTemplate } = require("@langchain/core/prompts");
+const { ChatOpenAI } = require("@langchain/openai");
 
 const industryExperienceSchema = z
 .object({
