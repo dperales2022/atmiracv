@@ -25,6 +25,7 @@ const industryExperienceSchema = z
     "Banking",
     "Public Administration",
     "Aviation",
+    "Textile",
     "Other",
   ]),
   otherDescription: z
