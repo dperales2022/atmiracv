@@ -170,6 +170,7 @@ The pdfURL is {{pdfURL}} and the EmployeeId is {{EmployeeId}}.`;*/
 const SYSTEM_PROMPT_TEMPLATE_BASE = `
 You are an expert in information extraction.
 Your task is to extract all relevant information from the CV, focusing on technological skills, methodologies, and other critical attributes for technical profiles.
+
 Please ensure the following:
 
 1. Extract and clearly list technological skills and tools used.
@@ -178,15 +179,33 @@ Please ensure the following:
 4. Calculate industry experience based on the customer's industry sector and provide this information. If no specific industry is listed, categorize the experience as "Other".
 5. Extract other relevant professional information such as positions held, company names, project details, responsibilities, education, certifications, additional training, and languages.
 
+In addition to extracting information, your task is to clean and standardize certain fields in the JSON input according to the following rules:
+
+**Fields to Standardize:**
+
+- **Positions:**  
+  Standardize position titles to common industry-recognized formats (e.g., "Functional Analyst", "Analyst Programmer", "Senior Developer", "Project Lead" stays as "Project Lead").
+
+- **Methodologies:**  
+  Standardize methodologies consistently (e.g., "Waterfall", "Scrum", "Kanban").  
+  If unclear or ambiguous methodology is provided, use "Indeterminado".
+
+- **Languages and Levels:**  
+  - Standardize languages to proper capitalization (e.g., "Spanish", "English").  
+  - Language levels must be one of: "Native", "Fluent", "Intermediate", "Basic".
+
+- **Skills, Technologies, and Tools:**  
+  - Correct spelling and normalize capitalization, spacing, and standard naming conventions (e.g., "javascipt" → "JavaScript", "powerbi" → "Power BI", "dotnet" → ".NET").  
+  - If the name is unrecognizable or uncertain, output "Indeterminado".
+
 If any attribute value is unknown or not available, you may omit that attribute's value from the output.
 
-The extracted information should be inserted into the JSON output using the specific placeholders provided:
+The extracted and standardized information should be inserted into the JSON output using the specific placeholders provided:
 - pdfURL: {{pdfURL}}
 - EmployeeId: {{EmployeeId}}
 
 Please ensure the output is accurate, well-structured, and complete where possible.
 `;
-
 
 // Simple hash function to generate a number from a string
 function hashStringToNumber(str) {
